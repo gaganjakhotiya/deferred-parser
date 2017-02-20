@@ -7,7 +7,7 @@ module.exports = function(source){
 			o += "var _r" + i + " = " + r + ";\n"
 			source = source.replace(r, '_r' + i)
 		})
-		var d = "(function(){" + source.replace(/(module\.exports)\s*=/, "return ") + "}())";
+		var d = "(function(){" + source.replace(/(,?\s*module\.exports)\s*=/, ";return ") + "}())";
 		o += "module.exports = eval(" + Stringify(d).replace(/"/g, '\\\'') + ")";
 	}
 	return o || source
